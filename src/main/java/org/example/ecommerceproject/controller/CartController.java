@@ -1,12 +1,9 @@
 package org.example.ecommerceproject.controller;
 
 import org.example.ecommerceproject.client.FakeStoreClient;
-import org.example.ecommerceproject.client.FakeStoreClient;
-import org.example.ecommerceproject.dtos.FakeStoreCartResponseDTO;
+import org.example.ecommerceproject.dtos.fakeStoreDTOs.FakeStoreCartResponseDTO;
 import org.example.ecommerceproject.exception.CartNotFoundException;
-import org.example.ecommerceproject.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

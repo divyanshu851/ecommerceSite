@@ -1,7 +1,7 @@
 package org.example.ecommerceproject.services;
 
 import org.example.ecommerceproject.client.FakeStoreClient;
-import org.example.ecommerceproject.dtos.FakeStoreProductResponseDTO;
+import org.example.ecommerceproject.dtos.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import org.example.ecommerceproject.exception.ProductNotFoundException;
 import org.example.ecommerceproject.Entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,9 +12,14 @@ public class Product extends BaseModel{
     private String title;
     private double price;
     private String description;
-    private String category;
     @ManyToOne
-    private Category category2;
+    private Category category;
     private String imageURL;
     private double rating;
 }
+
+//private String title;
+//private double price;
+//private String description;
+//private String imageURL;
+//private String categoryId;

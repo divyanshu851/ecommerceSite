@@ -1,4 +1,4 @@
-package org.example.ecommerceproject.dtos;
+package org.example.ecommerceproject.dtos.fakeStoreDTOs;
 
 import lombok.Getter;
 import lombok.Setter;

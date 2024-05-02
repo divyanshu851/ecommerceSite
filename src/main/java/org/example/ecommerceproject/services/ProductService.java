@@ -1,18 +1,19 @@
 package org.example.ecommerceproject.services;
 
-import org.example.ecommerceproject.dtos.FakeStoreProductResponseDTO;
 import org.example.ecommerceproject.Entity.Product;
+import org.example.ecommerceproject.dtos.ProductRequestDTO;
+import org.example.ecommerceproject.dtos.ProductResponseDTO;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
-    List<Product> getAllProducts();
-    Product getProduct(UUID productId);
-    Product getProduct(String productName);
-    Product createProduct(Product product);
+    List<ProductResponseDTO> getAllProducts();
+    ProductResponseDTO getProduct(UUID productId);
+    ProductResponseDTO getProduct(String productName);
+    ProductResponseDTO createProduct(ProductRequestDTO requestDTO);
     boolean deleteProduct(UUID productId);
-    Product updateProduct(Product updatedProduct, UUID productId);
-    List<Product> getProducts(double min, double max);
+    ProductResponseDTO updateProduct(ProductRequestDTO updatedProduct, UUID productId);
+    List<ProductResponseDTO> getProducts(double min, double max);
 
 }

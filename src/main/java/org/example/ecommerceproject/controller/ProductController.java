@@ -1,7 +1,8 @@
 package org.example.ecommerceproject.controller;
 
-import org.example.ecommerceproject.dtos.FakeStoreProductResponseDTO;
 import org.example.ecommerceproject.Entity.Product;
+import org.example.ecommerceproject.dtos.ProductRequestDTO;
+import org.example.ecommerceproject.dtos.ProductResponseDTO;
 import org.example.ecommerceproject.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,42 +20,39 @@ public class ProductController {
     private ProductService productService; // field injection
 
     @GetMapping
-    public ResponseEntity getAllProducts(){
-        List<Product> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+        List<ProductResponseDTO> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getProductById(@PathVariable("id") UUID id){
-        Product product = productService.getProduct(id);
-        return ResponseEntity.ok(product);
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("id") UUID id){
+        return ResponseEntity.ok(productService.getProduct(id));
     }
 
     @PostMapping
-    public ResponseEntity createProduct(@RequestBody Product product){
-        Product createdProduct = productService.createProduct(product);
-        return ResponseEntity.ok(createdProduct);
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO requestDTO){
+        return ResponseEntity.ok(productService.createProduct(requestDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateProduct(@PathVariable("id") UUID id, @RequestBody Product product){
-        Product updatedProduct = productService.updateProduct(product, id);
-        return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable("id") UUID id, @RequestBody ProductRequestDTO product){
+        return ResponseEntity.ok(productService.updateProduct(product, id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProduct(@PathVariable("id") UUID id){
+    public ResponseEntity<Boolean> deleteProduct(@PathVariable("id") UUID id){
         boolean isDeleted = productService.deleteProduct(id);
         return ResponseEntity.ok(isDeleted);
     }
 
     @GetMapping("/name/{productName}")
-    public ResponseEntity getProductByProductName(@PathVariable("productName") String productName){
+    public ResponseEntity<ProductResponseDTO> getProductByProductName(@PathVariable("productName") String productName){
         return ResponseEntity.ok(productService.getProduct(productName));
     }
 
     @GetMapping("/{min}/{max}")
-    public ResponseEntity getProductsByPriceRange(@PathVariable("min") double min, @PathVariable("max") double max){
+    public ResponseEntity<List<ProductResponseDTO>> getProductsByPriceRange(@PathVariable("min") double min, @PathVariable("max") double max){
         return ResponseEntity.ok(productService.getProducts(min, max));
     }
 }
