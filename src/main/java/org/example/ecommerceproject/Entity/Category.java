@@ -5,6 +5,7 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,5 @@ public class Category extends BaseModel{
 
     private String name;
     @OneToMany
-    private List<Product> products;;
-
+    private List<Product> products = new ArrayList<>();
 }

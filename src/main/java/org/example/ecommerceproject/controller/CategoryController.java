@@ -40,4 +40,9 @@ public class CategoryController {
     public ResponseEntity<Boolean> deleteCategory(@PathVariable("id") UUID categoryId){
         return ResponseEntity.ok(categoryService.deleteCategory(categoryId));
     }
+
+    @GetMapping("/totalPrice/{categoryId}")
+    public ResponseEntity<Double> getTotalPriceForAllProducts(@PathVariable("categoryId") UUID categoryId){
+            return ResponseEntity.ok(categoryService.getTotalPriceForAllProducts(categoryId));
+    }
 }

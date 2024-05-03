@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
 public class ProductResponseDTO {
-    private int productId;
+    private UUID productId;
     private String title;
     private double price;
     private String description;

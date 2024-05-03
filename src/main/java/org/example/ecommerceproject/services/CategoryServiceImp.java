@@ -1,6 +1,7 @@
 package org.example.ecommerceproject.services;
 
 import org.example.ecommerceproject.Entity.Category;
+import org.example.ecommerceproject.Entity.Product;
 import org.example.ecommerceproject.dtos.CategoryResponseDTO;
 import org.example.ecommerceproject.dtos.CreateCategoryRequestDTO;
 import org.example.ecommerceproject.exception.CategoryNotFoundException;
@@ -59,5 +60,22 @@ public class CategoryServiceImp implements CategoryService{
     public Boolean deleteCategory(UUID categoryId) {
         categoryRepository.deleteById(categoryId);
         return true;
+    }
+
+    @Override
+    public Double getTotalPriceForAllProducts(UUID categoryId) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow(
+                () -> new CategoryNotFoundException("The category not found with categoryId" + categoryId)
+        );
+
+        if(category.getProducts().isEmpty()){
+            return 0.0;
+        }else{
+            double sum = 0;
+            for(Product product : category.getProducts()){
+                sum+= product.getPrice();
+            }
+            return sum;
+        }
     }
 }

@@ -56,6 +56,9 @@ public class ProductServiceImp implements ProductService{
         );
         product.setCategory(savedCategory);
         product = productRepository.save(product);
+        List<Product> temp = savedCategory.getProducts();
+        temp.add(product);
+        categoryRepository.save(savedCategory);
         return ProductEntityDTOMapper.convertProductEntityToProductResponseDTO(product);
     }
 
