@@ -9,8 +9,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class CategoryResponeDTO {
+public class CategoryResponseDTO {
     private UUID categoryId;
     private String categoryName;
-    private List<ProductResponseDTO> products
+    private List<ProductResponseDTO> products;
 }
