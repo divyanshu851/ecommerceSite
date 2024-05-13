@@ -64,6 +64,7 @@ public class CategoryServiceImp implements CategoryService{
 
     @Override
     public Double getTotalPriceForAllProducts(UUID categoryId) {
+//        return 0.0;
         Category category = categoryRepository.findById(categoryId).orElseThrow(
                 () -> new CategoryNotFoundException("The category not found with categoryId" + categoryId)
         );

@@ -24,7 +24,6 @@ public class ProductEntityDTOMapper {
         product.setPrice(requestDTO.getPrice());
         product.setDescription(requestDTO.getDescription());
         product.setImageURL(requestDTO.getImageURL());
-
         return product;
     }
 }
