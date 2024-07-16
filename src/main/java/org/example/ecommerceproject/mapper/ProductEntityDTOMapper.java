@@ -3,6 +3,7 @@ package org.example.ecommerceproject.mapper;
 import org.example.ecommerceproject.dtos.ProductRequestDTO;
 import org.example.ecommerceproject.dtos.ProductResponseDTO;
 import org.example.ecommerceproject.Entity.Product;
+import org.example.ecommerceproject.dtos.fakeStoreDTOs.FakeStoreProductResponseDTO;
 
 public class ProductEntityDTOMapper {
     public static ProductResponseDTO convertProductEntityToProductResponseDTO(Product product) {
@@ -25,5 +26,15 @@ public class ProductEntityDTOMapper {
         product.setDescription(requestDTO.getDescription());
         product.setImageURL(requestDTO.getImageURL());
         return product;
+    }
+
+    public static ProductResponseDTO convertFakeStoreProductToProductResponseDTO(FakeStoreProductResponseDTO fakeStoreProduct) {
+        ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+        productResponseDTO.setTitle(fakeStoreProduct.getTitle());
+        productResponseDTO.setCategory(fakeStoreProduct.getCategory());
+        productResponseDTO.setPrice(fakeStoreProduct.getPrice());
+        productResponseDTO.setImageURL(fakeStoreProduct.getImage());
+        productResponseDTO.setDescription(fakeStoreProduct.getDescription());
+        return productResponseDTO;
     }
 }

@@ -1,12 +1,15 @@
 package org.example.ecommerceproject.services;
 
 import org.example.ecommerceproject.client.FakeStoreClient;
+import org.example.ecommerceproject.dtos.ProductResponseDTO;
 import org.example.ecommerceproject.dtos.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import org.example.ecommerceproject.exception.ProductNotFoundException;
 import org.example.ecommerceproject.Entity.Product;
+import org.example.ecommerceproject.mapper.ProductEntityDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("fakeStoreProductService")
@@ -14,18 +17,22 @@ public class FakeStoreProductServiceImp{
     @Autowired
     private FakeStoreClient client;
 
-    public List<FakeStoreProductResponseDTO> getAllProducts() {
+    public List<ProductResponseDTO> getAllProducts() {
         List<FakeStoreProductResponseDTO> fakeStoreProducts = client.getAllProducts();
-        return fakeStoreProducts;
+        List<ProductResponseDTO> products = new ArrayList<>();
+        for(FakeStoreProductResponseDTO product : fakeStoreProducts){
+            products.add(ProductEntityDTOMapper.convertFakeStoreProductToProductResponseDTO(product));
+        }
+        return products;
     }
 
 
-    public FakeStoreProductResponseDTO getProduct(int productId) throws ProductNotFoundException{
+    public ProductResponseDTO getProduct(int productId) throws ProductNotFoundException{
         FakeStoreProductResponseDTO product = client.getProductById(productId);
         if(product == null){
             throw new ProductNotFoundException("Product not found with id " + productId);
         }
-        return product;
+        return ProductEntityDTOMapper.convertFakeStoreProductToProductResponseDTO(product);
     }
 
 

@@ -3,6 +3,7 @@ package org.example.ecommerceproject.controller;
 import org.example.ecommerceproject.Entity.Product;
 import org.example.ecommerceproject.dtos.ProductRequestDTO;
 import org.example.ecommerceproject.dtos.ProductResponseDTO;
+import org.example.ecommerceproject.services.FakeStoreProductServiceImp;
 import org.example.ecommerceproject.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,10 @@ public class ProductController {
     @Autowired
     @Qualifier("productService")
     private ProductService productService; // field injection
+
+    @Autowired
+    @Qualifier("fakeStoreProductService")
+    private FakeStoreProductServiceImp fakeStoreProductService;
 
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
@@ -55,5 +60,10 @@ public class ProductController {
     @GetMapping("/{min}/{max}")
     public ResponseEntity<List<ProductResponseDTO>> getProductsByPriceRange(@PathVariable("min") double min, @PathVariable("max") double max){
         return ResponseEntity.ok(productService.getProducts(min, max));
+    }
+
+    @GetMapping("/fakeStore")
+    public ResponseEntity<List<ProductResponseDTO>> getFakeStoreProducts(){
+        return ResponseEntity.ok(fakeStoreProductService.getAllProducts());
     }
 }
